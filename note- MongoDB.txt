@@ -1,0 +1,134 @@
+
+MONGODB
+-------
+
+Database
+--------
+- it is an organized collection of data that is stored and managed in a way that it is easy to retrieve, update and manipulate
+
+- 2 types of Database
+    1) SQL Database
+    2) NoSQL Database
+
+  SQL - Structured Query Language
+  -------------------------------
+  - Relational Database
+  - data is Stored in the form of table
+  - rigid schema 
+            - schema means structure in which data is stored
+  - Eg : postgre , mysql , oracle etc
+
+
+
+
+  NoSQL - Not Only Structured Query Language
+  -------------------------------------------
+  - Not a relational Database
+  - not stored as table like format
+  - Flexible schema - structure is present, but not follows always
+  - eg : MongoDB, cassandra, redis
+        MongoDB - stores as document
+        cassandra - as wide-column
+        redis - as key-value pairs
+
+
+MongoDB 
+--------
+- nosql based Database
+
+    Structure
+    ---------
+    - In one cluster/ deployment - there can be more than one database 
+    - one database contains one or more collections -- [collections corresponds to a table in sql database]
+    - one collection can have more than one document -- [documents corresponds to a record(row in a table) in sql database]
+    - one document can have more than one fields
+    - fields are the key:value pairs - (means data)
+    - each document have an unique id called - objectID - given in _id key
+    -,data is stored in the form of json-like format (BJSON - binary JSON (converting into binary and then storing))
+
+
+    Types based on scope
+    --------------------
+
+    1) mongodb compasss : local level - it is installed in system so the data stored inside compass will be  only accessible within the system 
+
+    2) mongodb atlas : global level - cloud based(means available on internet) - available in internet - so the system having the connectionstring(url) can access the data with permission  
+
+
+Installation
+    - go to mongodb community server download and download it 
+
+ mongosh - mongodb shell - terminal to mongodb command
+
+ COMMANDS
+ --------
+ 1) show databases - to list out all databases inside the cluster/connection 
+ 2) use database_name - to move into a particular database in a cluster 
+ 3) show collections - to list out all collections in a database
+
+CRUD Operations
+---------------
+
+GET
+---
+4) find() - to get all document inside a collection
+        command - db.collectioname.find()
+
+5) findone(condition) - returns a single document 
+
+6) limit() - to get a particular number of document given in the limit function
+
+7) skip() - to skip number of specified documents
+
+8) sort(condition) - to arrange the documents 
+                   - condition - {key:1} - ascending order
+                               - {key:-1} - descending order 
+Query based
+-----------
+- $operator
+- $gt , $gte , $lt , $lte , $eq , $ne , $or:[condition1 , condition2] , $and:[condition1 , condition2] , $exists
+ $set - to update anything in an object 
+ $push - to update anything in an array 
+
+ADD
+---
+9) insertOne() - add one document at a time
+
+10) insertMany() - more than one document at a time
+
+
+UPDATE 
+------
+1) updateOne(condition , update)
+2) updateMany()
+3) findByIdandUpdate(condition_ID , update)
+
+DELETE
+------
+1) deleteOne() - delete one document at a time 
+2) deleteMany() - delete more than one document at a time
+3) findByIdandDelete()
+
+
+aggregation
+-----------
+- $lookup 
+    syntax
+    ------
+    {
+   $lookup:
+     {
+       from: <collection to join>,
+       localField: <field from the input documents>,
+       foreignField: <field from the documents of the "from" collection>,
+       as: <output array field>
+     }
+}
+
+MongoDB Atlas 
+-------------
+- create an account in mongodb atlas 
+- sign in 
+- sidebar - click cluster
+- then create the database 
+- in sidebar cluster - there will be the connection string url copy and paste it in .env file 
